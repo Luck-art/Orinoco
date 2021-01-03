@@ -31,7 +31,6 @@ function displayData(data) {
 
 
     for (let i = 0; i < data.length; i++) {
-        //console.log(data[i]._id);
 
         ////////////////////////////////////////////////////////////////////////// Composants du conteneur de la card //////////////////////////////////////////////////////////////////////
 
@@ -69,7 +68,7 @@ function displayData(data) {
         card.appendChild(priceCamera);
 
         ////////////////////////////////////////////////////////////////////////// Composants des descriptions des cards //////////////////////////////////////////////////////////////////////
-        
+
         const description = document.createElement("p");
         description.innerHTML = data[i].description;
         card.appendChild(description);

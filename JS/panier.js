@@ -133,8 +133,8 @@ function sendInfos() {
     const form = document.querySelector('.form');
     console.log(form);
     form.addEventListener('submit', function(event) {
-        window.location = "validation.html";
         event.preventDefault();
+        window.location = "validation.html";
         if (!form.checkValidity()) {
             alert('Une erreur est survenue !');
         }
