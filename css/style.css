@@ -1,0 +1,80 @@
+.camera_container {
+    display: flex;
+    justify-content: center;
+    margin-top: 5%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.cardStyle {
+    background-color: silver;
+    text-align: center;
+    border-radius: 15px 15px 0px 0px;
+    margin: 5%;
+}
+
+.cardStyleValidation {
+    margin: 5%;
+    border: 3px solid gray;
+}
+
+.cardImageStyle {
+    border-radius: 15px 15px 0px 0px;
+}
+
+.buttonChoice {
+    font-size: 1.1em;
+}
+
+.buttonOfPanier {
+    font-size: 1em;
+}
+
+.product-alert {
+    display: none;
+    flex-direction: column;
+    max-width: 20%;
+    align-items: center;
+    margin: auto;
+}
+
+.error_panier {
+    display: none;
+    flex-direction: column;
+    max-width: 20%;
+    align-items: center;
+    margin: auto;
+    border: 4px solid red;
+}
+
+.card_body_panier {
+    display: flex;
+    justify-content: space-around;
+}
+
+.total-price {
+    max-width: 20%;
+    margin: auto;
+    border: 2px solid rgb(66, 129, 245);
+    text-align: center;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    max-width: 90%;
+    margin: auto;
+    background-color: silver;
+}
+
+.col-md-4,
+.col-md-6 {
+    min-width: 100%;
+}
+
+.valid-alert {
+    max-width: 20%;
+    text-align: center;
+    margin: auto;
+    border: 2px solid rgb(23, 82, 5);
+}
