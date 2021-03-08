@@ -20,7 +20,7 @@ function displayBasket() {
 
         const card = document.createElement("div");
         card.className = 'card cardStyle';
-        card.style.width = '20%';
+        card.style.width = '30%';
 
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////// Image de l'objet ////////////////////////////////////////////////////////////////////////////////////////
 
@@ -106,25 +106,10 @@ function calculTotalPriceProducts() {
 
     for (i = 0; i < products.length; i++) {
         total += products[i].price;
-        document.querySelector('.total-price').innerHTML = 'Prix total des produits: ' + total + '€';
     }
+    document.querySelector('.total-price').innerHTML = 'Prix total des produits: ' + total + '€';
 }
 calculTotalPriceProducts();
-
-
-
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////// Formulaire de validation ////////////////////////////////////////////////////////////////////////////////////////
-
-const theForm = document.querySelector('.needs-validation')
-
-theForm.addEventListener('submit', function(event) {
-    if (!theForm.checkValidity()) {
-        event.preventDefault()
-        event.stopPropagation()
-    }
-
-    theForm.classList.add('was-validated')
-}, false)
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////// Envoie des informations ////////////////////////////////////////////////////////////////////////////////////////
 
@@ -134,13 +119,11 @@ function sendInfos() {
     console.log(form);
     form.addEventListener('submit', function(event) {
         event.preventDefault();
-        window.location = "validation.html";
         if (!form.checkValidity()) {
             alert('Une erreur est survenue !');
+            form.classList.add('was-validated');
+            return false;
         }
-
-        console.log(form);
-        console.log(event.target);
 
 
         let contact = {
@@ -181,6 +164,7 @@ function sendInfos() {
                 console.log('Une erreur est survenue !');
             }
         });
+        window.location = "validation.html";
     })
 }
 sendInfos();
