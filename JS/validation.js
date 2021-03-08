@@ -1,9 +1,17 @@
 const products = JSON.parse(localStorage.getItem('products'));
 console.log(products);
 
-if (!localStorage) {
-    alert('Une erreur  est survenue !');
+if (products) {
+    displayBasket();
+    calculTotalPriceProducts();
+}else {
+    alert('Une erreur est survenue !');
 }
+if(localStorage.getItem('itemOrderId')) {
+    document.querySelector('#container-order-id').innerHTML = "<h3>Voici votre identifiant de commande:</h3><br/>" + localStorage.getItem('itemOrderId');
+}
+
+
 
 function displayBasket() {
 
@@ -40,7 +48,7 @@ function displayBasket() {
         camerasContainer.appendChild(card);
     }
 }
-displayBasket();
+
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////// Calcule du prix total des produits ////////////////////////////////////////////////////////////////////////////////////////
 
@@ -50,11 +58,7 @@ function calculTotalPriceProducts() {
 
     for (i = 0; i < products.length; i++) {
         total += products[i].price;
-        document.querySelector('.total-price').innerHTML = 'Prix total des produits: ' + total + '€';
+        
     }
+    document.querySelector('.total-price').innerHTML = 'Prix total des produits: ' + total + '€';
 }
-calculTotalPriceProducts();
-
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////// Affichage de l'orderId ////////////////////////////////////////////////////////////////////////////////////////
-
-document.querySelector('#container-order-id').innerHTML = "Voici votre identifiant de commande:" + localStorage.getItem('itemOrderId');

@@ -1,16 +1,39 @@
-.camera_container {
-    display: flex;
-    justify-content: center;
-    margin-top: 5%;
-    display: flex;
-    flex-wrap: wrap;
+body {
+    background-color:  rgb(221, 219, 219);;
+}
+body, html {
+    height: 100%;
+}
+aside {
+    max-height: 240px;
 }
 
+sidebar p {
+    text-align: center;
+}
+footer {
+    background-color: rgb(34, 31, 31);
+    color: white;
+    display: flex; 
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin-top: 40px;
+}
+.camera_container {
+    background-color: rgb(221, 219, 219);
+    display: flex;
+    justify-content: center;
+    display: flex;
+    flex-wrap: wrap;
+    margin:0px;
+}
 .cardStyle {
     background-color: silver;
     text-align: center;
     border-radius: 15px 15px 0px 0px;
-    margin: 5%;
+    border-color: black;
+    margin: 10%;
 }
 
 .cardStyleValidation {
@@ -53,7 +76,7 @@
 }
 
 .total-price {
-    max-width: 20%;
+    max-width: 30%;
     margin: auto;
     border: 2px solid rgb(66, 129, 245);
     text-align: center;
@@ -77,4 +100,72 @@
     text-align: center;
     margin: auto;
     border: 2px solid rgb(23, 82, 5);
+}
+.buy_products {
+    text-align: center;
+    text-decoration: underline black;
+}
+#container-order-id {
+    text-align: center;
+}
+#container-order-id h3 {
+    text-decoration: underline black;
+}
+
+.social_reseau {
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+}
+#facebook {
+    max-width: 8%;
+    max-height: 8%;
+}
+#twitter, #instagram {
+    max-width: 10%;
+    max-height: 10%;
+    
+}
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) {     /* Responsive tablette*/
+    .cardStyle {
+        width: 150% !important;
+    }  
+    .product-alert {
+        max-width: 80% !important;
+    }
+    .cardStyleValidation {
+        width: 80% !important;
+    }
+    .valid-alert {
+        max-width: 80% !important;
+    }
+    .buy_products {
+        text-align: center;
+    }
+    .total-price {
+        max-width: 80% !important;
+    }
+}
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+    .cardStyle {
+        width: 200% !important;
+    }
+    .buttonOfPanier {
+        margin-left: 20px !important;
+    }
+    .product-alert {
+        max-width: 80% !important;
+    }
+    .cardStyleValidation {
+        width: 80% !important;
+    }
+    .valid-alert {
+        max-width: 80% !important;
+    }
+    .buy_products {
+        text-align: center;
+    }
+    .total-price {
+        max-width: 80% !important;
+    }
 }
