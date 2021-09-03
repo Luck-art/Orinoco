@@ -60,5 +60,5 @@ function calculTotalPriceProducts() {
         total += products[i].price;
         
     }
-    document.querySelector('.total-price').innerHTML = 'Prix total des produits: ' + total + '€';
+    document.querySelector('.total-price').innerHTML = 'Prix total des produits: ' + total / 100 + '€';
 }

@@ -1,10 +1,12 @@
 ////////////////////////////////////////////////////////////////////////////////////////////// La récupération des éléments de l'URL /////////////////////////////////////////////////////////////////////////////////////////
+
 function getItemFromUrl() {
     const urlParametres = window.location.search;
     const searchParams = new URLSearchParams(urlParametres);
 
     return searchParams.get('id');
 }
+
 ////////////////////////////////////////////////////////////////////////////////////////////// Vérification de l'URL ///////////////////////////////////////////////////////////////////////////////////////////////////////
 
 function displayError() {
@@ -12,6 +14,7 @@ function displayError() {
         alert('T\'es moche!');
     }
 };
+
 ////////////////////////////////////////////////////////////////////////////////////////////// Récupération d'un élément par son id par URL /////////////////////////////////////////////////////////////////////////////////////////
 
 function getProductById() {
@@ -66,7 +69,7 @@ function displayData(data) {
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////// Prix de l'objet  ////////////////////////////////////////////////////////////////////////////////////////
 
     const priceCamera = document.createElement("p");
-    priceCamera.innerHTML = data.price;
+    priceCamera.innerHTML = data.price / 100 + '€';
     cardBody.appendChild(priceCamera);
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////// Description de l'objet ////////////////////////////////////////////////////////////////////////////////////////
@@ -118,13 +121,31 @@ function displayData(data) {
 
     buttonPanier.addEventListener('click', function(event) {
         event.preventDefault();
-        let products = JSON.parse(localStorage.getItem('products')) ?? []; //  On affecte une variable à une valeur, ?? vérifie si la valeur de gauche est différente ou null de undefined 
-        products.push(data);
+        let products = JSON.parse(localStorage.getItem("products")) ?? []; //  On affecte une variable à une valeur, ?? vérifie si la valeur de gauche est différente ou null de undefined 
+        data.quantity = 1;
+        if (products.length === 0) {
+            products.push(data);
+            localStorage.setItem('products', JSON.stringify(products));
+            document.querySelector('.product-alert').style.display = 'flex';
+
+            return;
+        }
+        let contain = false;
+        for (let product of products) {
+            if (product._id === data._id) {
+                contain = true;
+                product.quantity++;
+            }
+        }
+        if (contain === false) {
+            products.push(data);
+        }
+        //products.push(data);
         localStorage.setItem('products', JSON.stringify(products));
         document.querySelector('.product-alert').style.display = 'flex';
 
     });
-    console.log(JSON.parse(localStorage.getItem('products')));
+    console.log(JSON.parse(localStorage.getItem("products")));
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////// Eléments enfents principaux ////////////////////////////////////////////////////////////////////////////////////////
 

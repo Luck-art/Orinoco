@@ -18,6 +18,7 @@ function displayBasket() {
 
         const camerasContainer = document.querySelector('.camera_container');
 
+
         const card = document.createElement("div");
         card.className = 'card cardStyle';
         card.style.width = '30%';
@@ -51,11 +52,19 @@ function displayBasket() {
         productsDescription.style.backgroundColor = 'silver';
         productsContainer.appendChild(productsDescription);
 
+         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////// Quantité de l'objet ////////////////////////////////////////////////////////////////////////////////////////
+
+        const quantityOfProducts = document.createElement("li");
+        quantityOfProducts.className = 'list-group-item quantity-products';
+        quantityOfProducts.innerHTML = `X <span class="quantity-product">${products[i].quantity}</span>`;
+        quantityOfProducts.style.backgroundColor = 'silver';
+        productsContainer.appendChild(quantityOfProducts);
+        
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////// Prix de l'objet ////////////////////////////////////////////////////////////////////////////////////////
 
         const productsPrice = document.createElement("li");
         productsPrice.className = 'list-group-item price-products';
-        productsPrice.innerHTML = products[i].price;
+        productsPrice.innerHTML = `<span class="price-product" data-price="${products[i].price / 100}">${products[i].price * products[i].quantity / 100}</span> €`;
         productsPrice.style.backgroundColor = 'silver';
         productsContainer.appendChild(productsPrice);
 
@@ -76,38 +85,75 @@ function displayBasket() {
 
         cancelButton.addEventListener('click', function(event) {
             const id = event.target.getAttribute('data-id');
-            removeFromBasket(id);
-            camerasContainer.removeChild(card);
-
+            removeFromBasket(id, event.target.closest('.card'));
+            calculQuantityProducts(event.target);
+            calculPriceProducts(event.target);
+            calculTotalPriceProducts(id);
         })
 
-        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////// Enfents principaux de card ////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////// Enfents principaux de card ////////////////////////////////////////////////////////////////////////////////////////
 
         camerasContainer.appendChild(card);
     }
 }
 displayBasket();
 
-function removeFromBasket(id) {
-    for (i = 0; i < products.length; i++) {
-        if (id === products[i]._id) {
-            products.splice(i, 1);
+function removeFromBasket(id, card) {
+
+   for (i = 0; i < products.length; i++) {
+        if (id === products[i]._id && products[i].quantity > 1) {
+            //products.splice(i, 1);
+            products[i].quantity--;
             break;
+        }
+        if (products[i].quantity === 1) {
+            card.remove();
+            products.splice(i, 1);
         }
     }
     localStorage.setItem('products', JSON.stringify(products));
 }
 
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////// Calcule de la quantité///////////////
+
+function calculQuantityProducts(removeBtn) {
+
+    const quantityContainer = removeBtn
+        .closest('.card_body_panier')
+        .previousSibling
+        .querySelector('.quantity-product');
+    let currentQuantity = parseInt(quantityContainer.textContent);
+    currentQuantity--;
+    quantityContainer.innerHTML = currentQuantity;
+}
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////// Calcule du prix total d'un produit ////////////////////////
+
+function calculPriceProducts(removeBtn) {
+    const priceContainer = removeBtn
+        .closest('.card_body_panier')
+        .previousSibling
+        .querySelector('.price-product');
+    let currentPrice = parseInt(priceContainer.textContent);
+    const unitPrice = parseInt(priceContainer.getAttribute('data-price'));
+    currentPrice -= unitPrice;
+    priceContainer.innerHTML = currentPrice;
+    
+}
+
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////// Calcule du prix total des produits ////////////////////////////////////////////////////////////////////////////////////////
 
-function calculTotalPriceProducts() {
+function calculTotalPriceProducts(id) {
 
-    let total = 0;
+    let totalOfProducts = 0;
 
     for (i = 0; i < products.length; i++) {
-        total += products[i].price;
+        totalOfProducts += products[i].price * products[i].quantity;
+        if (id === products[i]._id) {
+            products[i].price - products[i].quantity;
+        }
     }
-    document.querySelector('.total-price').innerHTML = 'Prix total des produits: ' + total + '€';
+    document.querySelector('.total-price').innerHTML = 'Prix total des produits: ' + totalOfProducts / 100 + '€';
 }
 calculTotalPriceProducts();
 
@@ -138,7 +184,6 @@ function sendInfos() {
 
 
         for (i = 0; i < products.length; i++) {
-
             productsId.push(products[i]._id);
         }
 
