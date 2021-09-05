@@ -43,6 +43,20 @@ function displayBasket() {
         productsTitle.innerHTML = products[i].name;
         mainContainerCard.appendChild(productsTitle);
 
+         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////// Prix de l'objet ////////////////////////////////////////////////////////////////////////////////////////
+
+         const productsPrice = document.createElement("h5");
+         productsPrice.className = 'card-price';
+         productsPrice.innerHTML = products[i].price * products[i].quantity / 100 + ' €';
+         mainContainerCard.appendChild(productsPrice);
+
+         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////// Prix de l'objet ////////////////////////////////////////////////////////////////////////////////////////
+
+         const productsQuantity = document.createElement("h5");
+         productsQuantity.className = 'card-quantity';
+         productsQuantity.innerHTML = 'X ' + products[i].quantity;
+         mainContainerCard.appendChild(productsQuantity);
+
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////// Enfents principaux de card ////////////////////////////////////////////////////////////////////////////////////////
 
         camerasContainer.appendChild(card);
@@ -57,7 +71,7 @@ function calculTotalPriceProducts() {
     let total = 0;
 
     for (i = 0; i < products.length; i++) {
-        total += products[i].price;
+        total += products[i].price * products[i].quantity;
         
     }
     document.querySelector('.total-price').innerHTML = 'Prix total des produits: ' + total / 100 + '€';

@@ -6,6 +6,7 @@ console.log(products);
 if (!localStorage) {
     alert('Une erreur  est survenue !');
 }
+
 if (products.length === 0) {
     const errorPanier = document.querySelector('.error_panier').style.display = 'flex';
     const formContainer = document.querySelector('.form_container').style.display = 'none';
@@ -109,6 +110,8 @@ function removeFromBasket(id, card) {
         if (products[i].quantity === 1) {
             card.remove();
             products.splice(i, 1);
+             errorPanier = document.querySelector('.error_panier').style.display = 'flex';
+             formContainer = document.querySelector('.form_container').style.display = 'none';
         }
     }
     localStorage.setItem('products', JSON.stringify(products));
