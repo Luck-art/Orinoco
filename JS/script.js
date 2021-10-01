@@ -43,7 +43,7 @@ function displayData(data) {
 
         const cardLink = document.createElement("a");
         cardLink.setAttribute("href", "produits.html?id=" + (data[i]._id));
-        cardLink.setAttribute("style", "color:black; text-decoration:none");
+        cardLink.setAttribute("style", "color:black; text-decoration:none; width:20%; margin:80px");
         cardLink.style.width = '20%';
         container.appendChild(cardLink);
         cardLink.appendChild(card);
@@ -64,7 +64,7 @@ function displayData(data) {
         ////////////////////////////////////////////////////////////////////////// Composants du prix des cards //////////////////////////////////////////////////////////////////////
 
         const priceCamera = document.createElement("p");
-        priceCamera.innerHTML = data[i].price;
+        priceCamera.innerHTML = data[i].price / 100 + '€';
         card.appendChild(priceCamera);
 
         ////////////////////////////////////////////////////////////////////////// Composants des descriptions des cards //////////////////////////////////////////////////////////////////////
