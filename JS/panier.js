@@ -1,6 +1,5 @@
-//const { get } = require("mongoose");
 
-const products = JSON.parse(localStorage.getItem('products'));
+const products = JSON.parse(localStorage.getItem('products')) ?? [];
 console.log(products);
 
 if (!localStorage) {
@@ -102,16 +101,18 @@ displayBasket();
 function removeFromBasket(id, card) {
 
    for (i = 0; i < products.length; i++) {
-        if (id === products[i]._id && products[i].quantity > 1) {
-            //products.splice(i, 1);
-            products[i].quantity--;
-            break;
-        }
-        if (products[i].quantity === 1) {
-            card.remove();
-            products.splice(i, 1);
-             errorPanier = document.querySelector('.error_panier').style.display = 'flex';
-             formContainer = document.querySelector('.form_container').style.display = 'none';
+        if (id === products[i]._id) {
+            if (products[i].quantity >= 1) {
+                products[i].quantity--;
+            }
+            if (products[i].quantity === 0) {
+                card.remove();
+                products.splice(i, 1);
+                if (products.length === 0) {
+                    errorPanier = document.querySelector('.error_panier').style.display = 'flex';
+                    formContainer = document.querySelector('.form_container').style.display = 'none';
+                }
+            }
         }
     }
     localStorage.setItem('products', JSON.stringify(products));
