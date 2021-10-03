@@ -7,17 +7,20 @@ body, html {
 main {
     background-color: rgb(235, 209, 175);
 }
-aside {
+article {
     max-height: 240px;
 }
-sidebar {
+aside {
+    display: contents;
+}
+section {
     background-color: blanchedalmond;
 }
-sidebar h4 {
+section h4 {
     margin-top: 20px;
     text-align: center;
 }
-sidebar p {
+section p {
     text-align: center;
 }
 .hero-image {
