@@ -56,7 +56,7 @@ function displayBasket() {
 
         const quantityOfProducts = document.createElement("li");
         quantityOfProducts.className = 'list-group-item quantity-products';
-        quantityOfProducts.innerHTML = `X <span class="quantity-product">${products[i].quantity}</span>`;
+        quantityOfProducts.innerHTML = `X <p class="quantity-product">${products[i].quantity}</p>`;
         quantityOfProducts.style.backgroundColor = 'silver';
         productsContainer.appendChild(quantityOfProducts);
         
@@ -64,7 +64,7 @@ function displayBasket() {
 
         const productsPrice = document.createElement("li");
         productsPrice.className = 'list-group-item price-products';
-        productsPrice.innerHTML = `<span class="price-product" data-price="${products[i].price / 100}">${products[i].price * products[i].quantity / 100}</span> €`;
+        productsPrice.innerHTML = `<p class="price-product" data-price="${products[i].price / 100}">${products[i].price * products[i].quantity / 100}</p> €`;
         productsPrice.style.backgroundColor = 'silver';
         productsContainer.appendChild(productsPrice);
 
