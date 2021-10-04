@@ -48,7 +48,7 @@
             <form class="row g-3 needs-validation form" novalidate>
                 <div class="col-md-4">
                     <label for="firstName" class="form-label">Prénom</label>
-                    <input type="text" class="form-control" id="firstName"  value="" required>
+                    <input type="text" class="form-control" id="firstName" pattern="[a-zA-Z-]{2,15}"  value="" required>
                     <div class="valid-feedback">
                         Champ valide!
                     </div>
@@ -58,7 +58,7 @@
                 </div>
                 <div class="col-md-4">
                     <label for="lastName" class="form-label">Nom</label>
-                    <input type="text" class="form-control" id="lastName" value="" required>
+                    <input type="text" class="form-control" id="lastName" pattern="[a-zA-Z-]{2,15}" value="" required>
                     <div class="valid-feedback">
                         Champ valide!
                     </div>
@@ -68,7 +68,7 @@
                 </div>
                 <div class="col-md-4">
                     <label for="address" class="form-label">Adresse</label>
-                    <input type="text" class="form-control" id="address" required>
+                    <input type="text" class="form-control" id="address" pattern="[a-zA-Z0-9' ]{4,30}" required>
                     <div class="valid-feedback">
                         Champ valide!
                     </div>
@@ -88,7 +88,7 @@
                 </div>
                 <div class="col-md-6">
                     <label for="city" class="form-label">Ville</label>
-                    <input type="text" class="form-control" id="city" required>
+                    <input type="text" class="form-control" id="city" pattern="[a-zA-Z-]{2,15}" required>
                     <div class="invalid-feedback">
                         Veuillez choirsir une ville.
                     </div>
