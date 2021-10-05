@@ -204,15 +204,16 @@ function sendInfos() {
         fetch('http://localhost:3000/api/cameras/order', options).then(response => {
             if (response.ok) {
                 response.json().then((data) => {
-                    localStorage.setItem('itemOrderId', data.orderId);
+                    localStorage.setItem('itemOrderId', JSON.stringify(data.orderId));
                     localStorage.setItem('itemContact', JSON.stringify(data.contact));
                     console.log(data);
                 });
+                window.location = "validation.html";
             } else {
                 console.log('Une erreur est survenue !');
             }
         });
-        window.location = "validation.html";
+        
     })
 }
 sendInfos();
